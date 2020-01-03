@@ -1,0 +1,67 @@
+.header {
+  $main-height: 496px;  // 變數：設定 Header 的高度
+  position: relative;
+  .header-main-image {
+    height: $main-height; // 設定
+  }
+
+  // rectangle intro box
+  $rectangle-image-height: 256px;
+  .rectangle-section {
+    margin-top: -90px;  // 整體往上面移動 90px
+  }
+  .header-image-context {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  .rectangle-image-wrap {
+    height: $rectangle-image-height;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+    writing-mode: vertical-lr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    & + .rectangle-image-wrap {
+      border-left: 1px solid white;
+    }
+    .rectangle-over {
+      background-color: rgba(theme-color('primary'), .8);
+      transition: background-color .5s;
+    }
+
+    // 互動樣式
+    &.active, &:hover, &:focus {
+      color: theme-color('primary');
+      font-weight: bolder;
+      .rectangle-over {
+        background-color: rgba(theme-color('accent'), .8);
+      }
+      .rectangle-image {
+        filter: blur(0); // 被摸到時取消濾鏡效果
+      }
+    } 
+  }
+
+  .rectangle-text {
+    font-size: 24px;
+    letter-spacing: 10px; // 文字間距
+  }
+
+  .rectangle-image {    // 放置 image 的區塊
+    position: absolute;  
+    right: -10px;       // 因為使用網格排版，將網格扣掉的邊緣補回
+    left: -10px;
+    top: -10px;
+    bottom: -10px;
+    filter: blur(5px); // 預設將圖片模糊
+    z-index: -2;       // 最下層
+    transition: filter .5s;
+  }
+
+  
+}
